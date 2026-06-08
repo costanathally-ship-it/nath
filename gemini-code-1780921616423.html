@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Forte, Futuro Sustentável</title>
+    <meta name="programacao-agrinho" content="Nivel-4-Sucesso">
+    
+    <style>
+        /* Paleta de Cores Sustentável (Identidade Agro Forte) */
+        :root {
+            --primary: #2e7d32;       /* Verde Produção */
+            --primary-dark: #1b5e20;  /* Verde Floresta Escuro */
+            --accent: #ef6c00;        /* Laranja Solo / Terra */
+            --bg-light: #f1f8e9;      /* Fundo Claro Confortável */
+            --text-dark: #263238;     /* Grafite Escuro para Leitura */
+            --white: #ffffff;
+        }
+
+        /* Reset e Configurações Gerais Responsivas */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Tag Visual Agrinho */
+        .tag-agrinho-badge {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Seções Adaptáveis */
+        section {
+            background: var(--white);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* Cards do Tripé da Sustentabilidade */
+        .grid-sustentavel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card-agro {
+            background: #fafafa;
+            border-top: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .card-agro h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        /* Seção do Simulador Matemático com JavaScript */
+        .simulador-box {
+            background: #e8f5e9;
+            border: 2px dashed var(--primary);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn-calcular {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .btn-calcular:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Resultado Interativo Dinâmico */
+        #resultado-simulacao {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 6px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .resultado-sucesso {
+            background-color: #c8e6c9;
+            color: #1b5e20;
+            border-left: 5px solid #4caf50;
+        }
+
+        .resultado-alerta {
+            background-color: #ffecb3;
+            color: #b78103;
+            border-left: 5px solid #ffc107;
+        }
+
+        /* Rodapé e Créditos Obrigatórios */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .creditos {
+            border-top: 1px solid #455a64;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Media Query para Responsividade em Telas Pequenas */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            section { padding: 1.5rem; }
+            h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Agro Forte, Futuro Sustentável</h1>
+        <p>Equilíbrio entre Produção Alimentar e Conservação Ambiental</p>
+        <span class="tag-agrinho-badge">Projeto Agrinho 2026</span>
+    </header>
+
+    <div class="container">
+        
+        <section>
+            <h2>O Desafio do Século: Produzir sem Destruir</h2>
+            <p>O agronegócio moderno desempenha um papel vital no abastecimento global de alimentos. No entanto, o grande desafio atual reside em encontrar a harmonia perfeita entre a alta produtividade no campo e a preservação rigorosa dos nossos ecossistemas naturais.</p>
+            <p>Através do Pensamento Computacional e da Educação Digital, podemos criar soluções baseadas em dados para monitorar o uso da água, otimizar o uso do solo e mitigar os impactos das mudanças climáticas.</p>
+        </section>
+
+        <section>
+            <h2>Estratégias de Equilíbrio Ambiental</h2>
+            <div class="grid-sustentavel">
+                <div class="card-agro">
+                    <h3>Agricultura de Precisão</h3>
+                    <p>Uso de sensores, robótica e análise de dados para aplicar insumos e água na quantidade exata, evitando desperdícios e contaminação do lençol freático.</p>
+                </div>
+                <div class="card-agro">
+                    <h3>Manejo de Carbono</h3>
+                    <p>Técnicas como o plantio direto e a integração lavoura-pecuária-floresta (ILPF) que ajudam a fixar o carbono no solo, combatendo o efeito estufa.</p>
+                </div>
+                <div class="card-agro">
+                    <h3>Preservação Legal</h3>
+                    <p>Cumprimento rigoroso do Código Florestal, mantendo as Áreas de Preservação Permanente (APPs) e as Reservas Legais intactas nas propriedades.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Simulador de Eficiência Ecológica da Terra</h2>
+            <p>Use este modelo matemático computacional para verificar se a distribuição de uma propriedade agrícola cumpre as metas ideais de equilíbrio sustentável.</p>
+            
+            <div class="simulador-box">
+                <div class="form-group">
+                    <label for="area-total">Área Total da Propriedade (em hectares):</label>
+                    <input type="number" id="area-total" placeholder="Ex: 500" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="area-preservada">Área Destinada à Preservação / Floresta (em hectares):</label>
+                    <input type="number" id="area-preservada" placeholder="Ex: 120" min="0">
+                </div>
+                <button class="btn-calcular" onclick="calcularEficiencia()">Analisar Sustentabilidade</button>
+
+                <div id="resultado-simulacao"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p><strong>Desenvolvido para fins educacionais</strong></p>
+        <p>Componentes Curriculares: Educação Digital, Computação e Pensamento Computacional</p>
+        
+        <div class="creditos">
+            <p><strong>Créditos do Projeto:</strong> Alunos do Ensino Médio Técnico</p>
+            <p>Foco do Estudo: Desenvolvimento Front-End Responsivo focado no Agronegócio Sustentável</p>
+            <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.6;">&copy; 2026 Agro Forte Sustentável. Projeto Registrado — Tag: agrinho.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calcularEficiencia() {
+            // Captura dos valores inseridos pelo usuário
+            const areaTotalInput = document.getElementById('area-total').value;
+            const areaPreservadaInput = document.getElementById('area-preservada').value;
+            const divResultado = document.getElementById('resultado-simulacao');
+
+            // Validação simples de campos vazios
+            if (areaTotalInput === "" || areaPreservadaInput === "") {
+                divResultado.style.display = "block";
+                divResultado.className = "resultado-alerta";
+                divResultado.innerHTML = "Por favor, preencha todos os campos corretamente antes de calcular.";
+                return;
+            }
+
+            const areaTotal = parseFloat(areaTotalInput);
+            const areaPreservada = parseFloat(areaPreservadaInput);
+
+            // Validação lógica matemática
+            if (areaTotal <= 0 || areaPreservada < 0) {
+                divResultado.style.display = "block";
+                divResultado.className = "resultado-alerta";
+                divResultado.innerHTML = "Os valores inseridos devem ser maiores que zero.";
+                return;
+            }
+
+            if (areaPreservada > areaTotal) {
+                divResultado.style.display = "block";
+                divResultado.className = "resultado-alerta";
+                divResultado.innerHTML = "Erro: A área preservada não pode ser maior do que a área total da propriedade.";
+                return;
+            }
+
+            // Cálculo da porcentagem de área preservada (Modelo Matemático)
+            const percentualPreservado = (areaPreservada / areaTotal) * 100;
+            
+            // Exibição do resultado dinâmico baseado na regra de negócio (Ex: Meta de 20% conforme o Código Florestal para várias regiões)
+            divResultado.style.display = "block";
+            
+            if (percentualPreservado >= 20) {
+                divResultado.className = "resultado-sucesso";
+                divResultado.innerHTML = `<strong>Propriedade Sustentável!</strong> Sua propriedade possui ${percentualPreservado.toFixed(2)}% de área preservada. Parabéns, você atinge a meta mínima de equilíbrio sustentável e preservação da biodiversidade legal (20%).`;
+            } else {
+                divResultado.className = "resultado-alerta";
+                divResultado.innerHTML = `<strong>Atenção Necessária!</strong> Sua propriedade possui apenas ${percentualPreservado.toFixed(2)}% de área preservada. Para estar em conformidade ideal com o Código Florestal e garantir o futuro sustentável, planeje a recuperação ou o plantio de mais ${((areaTotal * 0.2) - areaPreservada).toFixed(2)} hectares.`;
+            }
+        }
+    </script>
+</body>
+</html>
